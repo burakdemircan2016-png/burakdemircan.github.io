@@ -494,6 +494,161 @@
   .intro-corner.bl { bottom: 2.5rem; left: 2.5rem; border-bottom: 1px solid #c9a84c; border-left: 1px solid #c9a84c; }
   .intro-corner.br { bottom: 2.5rem; right: 2.5rem; border-bottom: 1px solid #c9a84c; border-right: 1px solid #c9a84c; }
 
+  /* ── İLETİŞİM FORMU ── */
+  .cf-form { display: flex; flex-direction: column; gap: 1rem; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .cf-group { display: flex; flex-direction: column; gap: 0.3rem; }
+  .cf-label {
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #777; font-weight: 500;
+  }
+  .cf-input {
+    background: #ffffff; border: 1px solid #d8d8d8; border-radius: 8px;
+    padding: 0.82rem 1rem; font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif; color: #1a1a1a;
+    outline: none; transition: border-color 0.25s, box-shadow 0.25s;
+    width: 100%;
+  }
+  .cf-input:focus {
+    border-color: #b8962e;
+    box-shadow: 0 0 0 3px rgba(184,150,46,0.12);
+  }
+  .cf-input.cf-invalid { border-color: #d94f4f; box-shadow: 0 0 0 3px rgba(217,79,79,0.1); }
+  .cf-textarea { resize: vertical; min-height: 110px; }
+  .cf-phone-wrap {
+    display: flex; align-items: stretch;
+    background: #ffffff; border: 1px solid #d8d8d8; border-radius: 8px;
+    overflow: hidden; transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .cf-phone-wrap:focus-within {
+    border-color: #b8962e;
+    box-shadow: 0 0 0 3px rgba(184,150,46,0.12);
+  }
+  .cf-phone-wrap.cf-invalid { border-color: #d94f4f; box-shadow: 0 0 0 3px rgba(217,79,79,0.1); }
+  .cf-phone-prefix {
+    padding: 0 0.9rem; font-size: 0.9rem; font-weight: 500;
+    color: #555; background: #f4f4f4;
+    border-right: 1px solid #d8d8d8;
+    display: flex; align-items: center; user-select: none;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .cf-phone-input {
+    border: none; outline: none; background: transparent;
+    padding: 0.82rem 1rem; font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif; color: #1a1a1a; flex: 1; min-width: 0;
+  }
+  .cf-error {
+    font-size: 0.7rem; color: #d94f4f; min-height: 1rem;
+    letter-spacing: 0.01em; line-height: 1.4;
+  }
+  .cf-btn {
+    background: #1a1a1a; color: #ffffff;
+    padding: 0.9rem 2.2rem; border: none; cursor: pointer;
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+    margin-top: 0.5rem;
+  }
+  .cf-btn:hover { background: #333; transform: translateY(-2px); }
+  .cf-note {
+    font-size: 0.68rem; color: #aaa; margin-top: 0.5rem; letter-spacing: 0.02em;
+  }
+  .cf-success {
+    display: none; background: #f0f9f0; border: 1px solid #a8d8a8;
+    border-radius: 8px; padding: 0.9rem 1.1rem;
+    font-size: 0.88rem; color: #2d6a2d; margin-top: 0.25rem;
+  }
+  @media (max-width: 768px) {
+    .cf-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 6px;
+    z-index: 201;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+  .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBİL MENÜ ── */
+  .mob-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: #0a0a0a;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem 3rem;
+    overflow-y: auto;
+  }
+  .mob-menu.is-open { display: flex; }
+
+  .mob-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em; margin-bottom: 2.5rem; text-align: center;
+  }
+  .mob-brand em { color: #c9a84c; font-style: italic; }
+
+  .mob-nav-links { list-style: none; text-align: center; width: 100%; max-width: 300px; }
+  .mob-nav-links li + li { border-top: 1px solid rgba(255,255,255,0.07); }
+  .mob-nav-links a {
+    display: block;
+    padding: 1rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .mob-nav-links a:active { color: #c9a84c; }
+
+  .mob-divider {
+    width: 36px; height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin: 2rem auto;
+  }
+
+  .mob-legal-links {
+    list-style: none;
+    display: flex; flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem 1.4rem;
+  }
+  .mob-legal-links a {
+    font-size: 0.67rem; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.28);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 0.3rem 0;
+  }
+  .mob-legal-links a:active { color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+  }
+
 </style>
 </head>
 <body><!-- INTRO -->
@@ -504,7 +659,7 @@
   <div class="intro-corner br"></div>
   <div class="intro-line"></div>
   <h1 class="intro-name">Burak <span>DEMİRCAN</span></h1>
-  <p class="intro-title">Portfolio</p>
+  <p class="intro-title">PORTFOLIO</p>
   <div class="intro-line-bottom"></div>
   <div class="intro-dots">
     <div class="intro-dot"></div>
@@ -526,7 +681,28 @@
     <li><a href="#contact">İletişim</a></li>
     <li><a href="#" onclick="document.getElementById('legal-modal').style.display='flex';return false;">Yasal Uyarı</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menüyü aç">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBİL MENÜ -->
+<div class="mob-menu" id="mob-menu">
+  <p class="mob-brand">Burak <em>DEMİRCAN</em></p>
+  <ul class="mob-nav-links">
+    <li><a href="#about"      onclick="closeMobMenu()">Hakkımda</a></li>
+    <li><a href="#experience" onclick="closeMobMenu()">Deneyim</a></li>
+    <li><a href="#skills"     onclick="closeMobMenu()">Beceriler</a></li>
+    <li><a href="#education"  onclick="closeMobMenu()">Eğitim</a></li>
+    <li><a href="#contact"    onclick="closeMobMenu()">İletişim</a></li>
+  </ul>
+  <div class="mob-divider"></div>
+  <ul class="mob-legal-links">
+    <li><a href="#" onclick="closeMobMenu();document.getElementById('legal-modal').style.display='flex';return false;">Yasal Uyarı</a></li>
+    <li><a href="#" onclick="closeMobMenu();document.getElementById('privacy-modal').style.display='flex';return false;">Gizlilik Politikası</a></li>
+    <li><a href="#" onclick="closeMobMenu();document.getElementById('cookie-modal').style.display='flex';return false;">Çerez Politikası</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -758,42 +934,46 @@
     <div class="section-label" style="color:var(--accent);">Ulaşın</div>
     <h2 class="section-title" style="color:#1a1a1a;">İletişim <em style="color:var(--accent);">Bilgileri</em></h2>
     <div class="contact-grid">
-      <div class="contact-intro" style="color:rgba(255,255,255,0.55);">
-        <p style="color:#555;text-align:justify;">Merhaba, ben Burak. Erzurum'da inşaat mühendisi olarak çalışıyor, boş zamanlarımda web tasarımıyla ilgileniyorum. Bu site, kariyerimi ve geçmişimi paylaşmak amacıyla hazırladığım kişisel portfolyo sayfamdır.</p>
-        <p style="color:#555;text-align:justify;">Benimle iletişime geçmek için aşağıdaki bilgileri kullanabilirsiniz.</p>
-        <div class="contact-items">
-          <a href="https://wa.me/905532112598" target="_blank" style="background:#ffffff;border:1px solid #e0e0e0;border-radius:10px;display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;margin-bottom:1rem;text-decoration:none;transition:transform 0.3s ease,box-shadow 0.3s ease;cursor:pointer;" onmouseover="this.style.transform='translateX(8px)';this.style.boxShadow='4px 4px 20px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='translateX(0)';this.style.boxShadow='none'">
-            <div style="width:42px;height:42px;min-width:42px;background:#25D366;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#ffffff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <div class="contact-intro">
+        <p style="color:#555;text-align:justify;margin-bottom:0.8rem;">Merhaba, ben Burak. Erzurum'da inşaat mühendisi olarak çalışıyor, boş zamanlarımda web tasarımıyla ilgileniyorum. Bu site, kariyerimi ve geçmişimi paylaşmak amacıyla hazırladığım kişisel portfolyo sayfamdır.</p>
+        <p style="color:#555;text-align:justify;margin-bottom:1.5rem;">Benimle iletişime geçmek için formu <strong style="color:#1a1a1a;">gerçek bilgilerinizle</strong> eksiksiz doldurunuz. Tüm alanlar zorunludur.</p>
+
+        <div class="cf-form reveal">
+          <div class="cf-row">
+            <div class="cf-group">
+              <label class="cf-label" for="cf-isim">İsim</label>
+              <input class="cf-input" type="text" id="cf-isim" placeholder="Ahmet" maxlength="50" autocomplete="given-name">
+              <span class="cf-error" id="err-isim"></span>
             </div>
-            <div>
-              <div style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:0.15rem;">WhatsApp</div>
-              <div style="font-size:0.9rem;font-weight:500;color:#1a1a1a;">Mesaj Gönder</div>
-            </div>
-          </a>
-          <div class="contact-item" style="background:#ffffff;border:1px solid #e0e0e0;border-radius:10px;display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;margin-bottom:1rem;">
-            <div class="contact-item-icon" style="width:42px;height:42px;min-width:42px;background:#b8962e;border:1px solid #b8962e;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">✉️</div>
-            <div>
-              <div class="contact-item-label" style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:0.15rem;">E-posta</div>
-              <div class="contact-item-val" style="font-size:0.9rem;font-weight:500;color:#1a1a1a;">burakdemircan320@gmail.com</div>
+            <div class="cf-group">
+              <label class="cf-label" for="cf-soyisim">Soyisim</label>
+              <input class="cf-input" type="text" id="cf-soyisim" placeholder="Yılmaz" maxlength="50" autocomplete="family-name">
+              <span class="cf-error" id="err-soyisim"></span>
             </div>
           </div>
-          <div class="contact-item" style="background:#ffffff;border:1px solid #e0e0e0;border-radius:10px;display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;margin-bottom:1rem;">
-            <div class="contact-item-icon" style="width:42px;height:42px;min-width:42px;background:#b8962e;border:1px solid #b8962e;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">📍</div>
-            <div>
-              <div class="contact-item-label" style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:0.15rem;">Adres</div>
-              <div class="contact-item-val" style="font-size:0.9rem;font-weight:500;color:#1a1a1a;">Yenişehir / Palandöken / Erzurum</div>
+          <div class="cf-group">
+            <label class="cf-label" for="cf-tel">Telefon</label>
+            <div class="cf-phone-wrap" id="cf-phone-wrap">
+              <span class="cf-phone-prefix">+90</span>
+              <input class="cf-phone-input" type="tel" id="cf-tel" placeholder="5XX XXX XX XX" maxlength="13" autocomplete="tel">
             </div>
+            <span class="cf-error" id="err-tel"></span>
           </div>
-          <div class="contact-item" style="background:#ffffff;border:1px solid #e0e0e0;border-radius:10px;display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;margin-bottom:1rem;">
-            <div style="width:42px;height:42px;min-width:42px;background:#0a66c2;border:1px solid #0a66c2;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ffffff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </div>
-            <div>
-              <div class="contact-item-label" style="font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:0.15rem;">LinkedIn</div>
-              <a href="https://www.linkedin.com/in/burak-demircan-507955127/" target="_blank" style="font-size:0.9rem;font-weight:500;color:#1a1a1a;text-decoration:none;">Burak DEMİRCAN</a>
-            </div>
+          <div class="cf-group">
+            <label class="cf-label" for="cf-eposta">E-posta</label>
+            <input class="cf-input" type="email" id="cf-eposta" placeholder="ornek@email.com" maxlength="100" autocomplete="email">
+            <span class="cf-error" id="err-eposta"></span>
           </div>
+          <div class="cf-group">
+            <label class="cf-label" for="cf-mesaj">Mesaj</label>
+            <textarea class="cf-input cf-textarea" id="cf-mesaj" placeholder="Mesajınızı buraya yazınız…" maxlength="1000"></textarea>
+            <span class="cf-error" id="err-mesaj"></span>
+          </div>
+          <div>
+            <button class="cf-btn" type="button" onclick="submitContactForm()">Gönder →</button>
+            <p class="cf-note">Gönder butonuna tıklandığında e-posta uygulamanız açılacaktır.</p>
+          </div>
+          <div class="cf-success" id="cf-success">✓ E-posta uygulamanız açıldı. Mesajınızı göndermeyi unutmayınız.</div>
         </div>
       </div>
       <div>
@@ -826,9 +1006,19 @@
             </div>
           </div>
         </div>
-        <div style="margin-top:1.5rem;">
-          
-        </div>
+        <a href="https://www.linkedin.com/in/burak-demircan-507955127/" target="_blank" rel="noopener"
+           style="margin-top:1.5rem;display:flex;align-items:center;gap:1.2rem;padding:1.3rem 1.6rem;background:#ffffff;border:1px solid #e0e0e0;border-radius:12px;text-decoration:none;transition:transform 0.25s ease, box-shadow 0.25s ease;"
+           onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(10,102,194,0.15)'"
+           onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <div style="width:46px;height:46px;min-width:46px;background:#0a66c2;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#ffffff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:#999;margin-bottom:0.2rem;">LinkedIn</div>
+            <div style="font-size:0.95rem;font-weight:600;color:#1a1a1a;">Burak DEMİRCAN</div>
+            <div style="font-size:0.75rem;color:#0a66c2;margin-top:0.1rem;">Profilimi Görüntüle →</div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -839,7 +1029,7 @@
   <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;justify-content:center;">
     <span style="font-family:'Playfair Display',serif;font-size:1.4rem;color:rgba(255,255,255,0.8);letter-spacing:0.05em;">Burak <em style="font-style:italic;color:#c9a84c;">DEMİRCAN</em></span>
     <span style="width:1px;height:30px;background:rgba(255,255,255,0.15);display:inline-block;"></span>
-    <span style="font-size:0.78rem;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;">Portfolio</span>
+    <span style="font-size:0.78rem;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;">PORTFOLIO</span>
   </div>
 
   <div style="width:60px;height:1px;background:rgba(255,255,255,0.1);margin:0.3rem 0;"></div>
@@ -871,6 +1061,26 @@
 
 
   // Stagger reveal children
+
+  // Hamburger menü
+  var hamburger = document.getElementById('hamburger');
+  var mobMenu   = document.getElementById('mob-menu');
+
+  function closeMobMenu() {
+    if (!hamburger || !mobMenu) return;
+    hamburger.classList.remove('is-open');
+    mobMenu.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger && mobMenu) {
+    hamburger.addEventListener('click', function() {
+      var opening = !mobMenu.classList.contains('is-open');
+      hamburger.classList.toggle('is-open');
+      mobMenu.classList.toggle('is-open');
+      document.body.style.overflow = opening ? 'hidden' : '';
+    });
+  }
 
 </script>
 
@@ -908,5 +1118,289 @@
     
   </div>
 </div>
+<script>
+  /* ─── İLETİŞİM FORMU – GELİŞMİŞ DOĞRULAMA ─── */
+
+  // Türkçe harfleri Latin'e çevir + küçük harf
+  function _n(s) {
+    return String(s).toLowerCase()
+      .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
+      .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
+      .replace(/İ/g,'i').replace(/Ğ/g,'g').replace(/Ü/g,'u')
+      .replace(/Ş/g,'s').replace(/Ö/g,'o').replace(/Ç/g,'c');
+  }
+
+  // Küfür / hakaret listesi
+  // Sub: substring eşleşmesi (uzun & belirgin kelimeler)
+  var _SUB = ['orospu','sikim','siktir','sikis','yarrak','pezevenk',
+              'gerizekal','kahpe','surtuk','embesil','kaltak','salakl',
+              'fuck','bitch','cunt','bastard','nigger','bullshit',
+              'motherfuck','asshole','whore'];
+  // Word: tam kelime eşleşmesi (kısa & muğlak kelimeler)
+  var _WORD = ['amk','amq','oc','pic','sik','got','bok','ibne',
+               'mal','aptal','salak','ahmak','dangalak','okuz',
+               'shit','dick','cock','ass','slut','pussy'];
+
+  function _hasBad(text) {
+    var n = _n(text);
+    var compact = n.replace(/[^a-z]/g,'');
+    if (_SUB.some(function(w){ return compact.indexOf(_n(w)) !== -1; })) return true;
+    var words = n.split(/[^a-z]+/).filter(function(w){ return w.length > 0; });
+    if (_WORD.some(function(b){ return words.indexOf(_n(b)) !== -1; })) return true;
+    return false;
+  }
+
+  // ── İsim / Soyisim ──
+  function _chkName(val) {
+    var v = val.trim();
+    if (!/^[a-zA-ZğüşıöçĞÜŞİÖÇ\s\-]{2,50}$/.test(v))
+      return 'Yalnızca harf kullanılabilir, en az 2 karakter.';
+    if (v.replace(/[\s\-]/g,'').length < 2)
+      return 'En az 2 harf giriniz.';
+    var c = _n(v.replace(/[\s\-]/g,''));
+    // 3+ ardışık aynı harf → sahte (xxxx, aaa, bbbbb…)
+    if (/(.)\1{2,}/.test(c))
+      return 'Gerçek adınızı giriniz.';
+    // En az 2 farklı harf (aa, bb… reddedilir)
+    if (new Set(c.split('')).size < 2)
+      return 'Gerçek adınızı giriniz.';
+    // Klavye patikası / sahte desenler
+    var fakes = ['test','deneme','fake','asdf','qwer','zxcv','abcd',
+                 'admin','user','aaaa','bbbb','cccc','dddd','eeee','ffff',
+                 'gggg','hhhh','iiii','jjjj','kkkk','llll','mmmm','nnnn',
+                 'oooo','pppp','rrrr','ssss','tttt','uuuu','vvvv',
+                 'wwww','yyyy','zzzz','1234','0000','9999'];
+    if (fakes.some(function(f){ return c.indexOf(f) !== -1; }))
+      return 'Gerçek adınızı giriniz.';
+    if (_hasBad(v))
+      return 'Uygunsuz ifade içeriyor.';
+    return null;
+  }
+
+  // ── E-posta ──
+  function _chkEmail(val) {
+    var v = val.trim();
+    if (v.length < 5)
+      return 'Geçerli bir e-posta adresi giriniz. (örn: ali@gmail.com)';
+    // Türkçe / ASCII dışı karakter yasak → ı, ö, ş, ğ, ü, ç vs.
+    if (/[^\x20-\x7E]/.test(v))
+      return 'E-posta adresi Türkçe veya özel karakter içeremez. (örn: ali@gmail.com)';
+    // Katı RFC formatı: yalnızca a-z, 0-9, . _ % + - @ ve nokta
+    if (!/^[a-zA-Z0-9][a-zA-Z0-9._%+\-]*@[a-zA-Z0-9][a-zA-Z0-9.\-]*\.[a-zA-Z]{2,8}$/.test(v))
+      return 'Geçerli bir e-posta adresi giriniz. (örn: ali@gmail.com)';
+    // Yan yana nokta yasak
+    if (/\.{2,}/.test(v))
+      return 'Geçerli bir e-posta adresi giriniz.';
+    return null;
+  }
+
+  // ── Telefon ──
+  function _chkPhone(digits) {
+    // 10 hane, 5 ile başlamalı
+    if (!/^5[0-9]{9}$/.test(digits))
+      return '+90 ile başlayan geçerli bir numara giriniz. (örn: 532 111 22 33)';
+    // Tüm rakamlar aynı: 5000000000, 5555555555…
+    if (/^(.)\1{9}$/.test(digits))
+      return 'Gerçek telefon numaranızı giriniz.';
+    // 5+ ardışık aynı rakam: 5555512345, 5001112200…
+    if (/(.)\1{4,}/.test(digits))
+      return 'Gerçek telefon numaranızı giriniz.';
+    // Artan seri: 5123456789, 5234567890…
+    var rest = digits.slice(1);
+    if ('01234567890123456789'.indexOf(rest) !== -1 ||
+        '98765432109876543210'.indexOf(rest) !== -1)
+      return 'Gerçek telefon numaranızı giriniz.';
+    return null;
+  }
+
+  // ── Mesaj ──
+  function _chkMsg(val) {
+    var v = val.trim();
+    if (v.length < 20)
+      return 'Mesajınız en az 20 karakter olmalıdır. (' + v.length + '/20)';
+    if (_hasBad(v))
+      return 'Mesajınız uygunsuz ifade içeriyor. Lütfen düzeltin.';
+    return null;
+  }
+
+  // ── UI yardımcıları ──
+  function cfShowErr(fId, eId, msg) {
+    var el = document.getElementById(fId);
+    var er = document.getElementById(eId);
+    if (el) el.classList.add('cf-invalid');
+    if (fId === 'cf-tel') {
+      var w = document.getElementById('cf-phone-wrap');
+      if (w) w.classList.add('cf-invalid');
+    }
+    if (er) er.textContent = msg;
+  }
+
+  function cfClearErr(fId) {
+    var el = document.getElementById(fId);
+    var er = document.getElementById('err-' + fId.replace('cf-',''));
+    if (el) el.classList.remove('cf-invalid');
+    if (fId === 'cf-tel') {
+      var w = document.getElementById('cf-phone-wrap');
+      if (w) w.classList.remove('cf-invalid');
+    }
+    if (er) er.textContent = '';
+  }
+
+  // ── Telefon otomatik biçimlendirme + hata temizleme ──
+  (function() {
+    var tel = document.getElementById('cf-tel');
+    if (!tel) return;
+    tel.addEventListener('input', function() {
+      var d = this.value.replace(/\D/g,'');
+      if (d.startsWith('90') && d.length > 10) d = d.slice(2);
+      if (d.length > 10) d = d.slice(0,10);
+      var f='';
+      if (d.length>0) f+=d.slice(0,Math.min(3,d.length));
+      if (d.length>3) f+=' '+d.slice(3,Math.min(6,d.length));
+      if (d.length>6) f+=' '+d.slice(6,Math.min(8,d.length));
+      if (d.length>8) f+=' '+d.slice(8,10);
+      this.value = f;
+    });
+    ['cf-isim','cf-soyisim','cf-tel','cf-eposta','cf-mesaj'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', function(){ cfClearErr(id); });
+    });
+  })();
+
+  // ── Gönder ──
+  function submitContactForm() {
+    ['cf-isim','cf-soyisim','cf-tel','cf-eposta','cf-mesaj'].forEach(cfClearErr);
+    var isim    = document.getElementById('cf-isim').value.trim();
+    var soyisim = document.getElementById('cf-soyisim').value.trim();
+    var tel     = document.getElementById('cf-tel').value;
+    var eposta  = document.getElementById('cf-eposta').value.trim();
+    var mesaj   = document.getElementById('cf-mesaj').value.trim();
+    var ok=true, e;
+
+    if ((e=_chkName(isim)))                   { cfShowErr('cf-isim',   'err-isim',   e); ok=false; }
+    if ((e=_chkName(soyisim)))                { cfShowErr('cf-soyisim','err-soyisim',e); ok=false; }
+    if ((e=_chkPhone(tel.replace(/\s/g,'')))) { cfShowErr('cf-tel',    'err-tel',    e); ok=false; }
+    if ((e=_chkEmail(eposta)))                { cfShowErr('cf-eposta', 'err-eposta', e); ok=false; }
+    if ((e=_chkMsg(mesaj)))                   { cfShowErr('cf-mesaj',  'err-mesaj',  e); ok=false; }
+
+    if (!ok) return;
+
+    var subject = encodeURIComponent('İletişim Formu – '+isim+' '+soyisim);
+    var body    = encodeURIComponent(
+      'İsim Soyisim: '+isim+' '+soyisim+'\n'+
+      'Telefon: +90 '+tel+'\n'+
+      'E-posta: '+eposta+'\n\n'+
+      'Mesaj:\n'+mesaj
+    );
+    window.location.href = 'mailto:burakdemircan320@gmail.com?subject='+subject+'&body='+body;
+    var suc = document.getElementById('cf-success');
+    if (suc) suc.style.display='block';
+  }
+</script>
+</body>
+</html>
+    if (!telInput) return;
+
+    // Telefon otomatik biçimlendirme: 5XX XXX XX XX
+    telInput.addEventListener('input', function() {
+      var digits = this.value.replace(/\D/g, '');
+      // Yapıştırma ile +905... yazılmışsa başındaki 90'ı kaldır
+      if (digits.startsWith('90') && digits.length > 10) digits = digits.slice(2);
+      if (digits.length > 10) digits = digits.slice(0, 10);
+      var f = '';
+      if (digits.length > 0) f += digits.slice(0, Math.min(3, digits.length));
+      if (digits.length > 3) f += ' ' + digits.slice(3, Math.min(6, digits.length));
+      if (digits.length > 6) f += ' ' + digits.slice(6, Math.min(8, digits.length));
+      if (digits.length > 8) f += ' ' + digits.slice(8, 10);
+      this.value = f;
+    });
+
+    // Her alanda değişince hata mesajını temizle
+    ['cf-isim','cf-soyisim','cf-tel','cf-eposta','cf-mesaj'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', function() { cfClearErr(id); });
+    });
+  })();
+
+  function cfShowErr(fieldId, errId, msg) {
+    var el = document.getElementById(fieldId);
+    var err = document.getElementById(errId);
+    if (el) el.classList.add('cf-invalid');
+    if (fieldId === 'cf-tel') {
+      var wrap = document.getElementById('cf-phone-wrap');
+      if (wrap) wrap.classList.add('cf-invalid');
+    }
+    if (err) err.textContent = msg;
+  }
+
+  function cfClearErr(fieldId) {
+    var el = document.getElementById(fieldId);
+    var errId = 'err-' + fieldId.replace('cf-', '');
+    var err = document.getElementById(errId);
+    if (el) el.classList.remove('cf-invalid');
+    if (fieldId === 'cf-tel') {
+      var wrap = document.getElementById('cf-phone-wrap');
+      if (wrap) wrap.classList.remove('cf-invalid');
+    }
+    if (err) err.textContent = '';
+  }
+
+  function submitContactForm() {
+    // Tüm hataları sıfırla
+    ['cf-isim','cf-soyisim','cf-tel','cf-eposta','cf-mesaj'].forEach(cfClearErr);
+
+    var isim    = document.getElementById('cf-isim').value.trim();
+    var soyisim = document.getElementById('cf-soyisim').value.trim();
+    var tel     = document.getElementById('cf-tel').value;
+    var eposta  = document.getElementById('cf-eposta').value.trim();
+    var mesaj   = document.getElementById('cf-mesaj').value.trim();
+    var ok = true;
+
+    // İsim: sadece Türkçe/Latin harf ve boşluk, en az 2 harf
+    var nameRegex = /^[a-zA-ZğüşıöçĞÜŞİÖÇ\s\-]{2,50}$/;
+    if (!nameRegex.test(isim) || isim.replace(/\s/g,'').length < 2) {
+      cfShowErr('cf-isim', 'err-isim', 'Gerçek adınızı giriniz. Yalnızca harf, en az 2 karakter.');
+      ok = false;
+    }
+    if (!nameRegex.test(soyisim) || soyisim.replace(/\s/g,'').length < 2) {
+      cfShowErr('cf-soyisim', 'err-soyisim', 'Gerçek soyadınızı giriniz. Yalnızca harf, en az 2 karakter.');
+      ok = false;
+    }
+
+    // Telefon: boşluklar kaldırılınca tam 10 rakam, 5 ile başlamalı
+    var telDigits = tel.replace(/\s/g, '');
+    if (!/^5[0-9]{9}$/.test(telDigits)) {
+      cfShowErr('cf-tel', 'err-tel', 'Geçerli bir Türkiye numarası giriniz. Örnek: 532 111 22 33');
+      ok = false;
+    }
+
+    // E-posta
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(eposta)) {
+      cfShowErr('cf-eposta', 'err-eposta', 'Geçerli bir e-posta adresi giriniz. Örnek: ornek@email.com');
+      ok = false;
+    }
+
+    // Mesaj: en az 20 karakter
+    if (mesaj.length < 20) {
+      cfShowErr('cf-mesaj', 'err-mesaj', 'Mesajınız en az 20 karakter olmalıdır. (' + mesaj.length + '/20)');
+      ok = false;
+    }
+
+    if (!ok) return;
+
+    var subject = encodeURIComponent('İletişim Formu – ' + isim + ' ' + soyisim);
+    var body = encodeURIComponent(
+      'İsim Soyisim: ' + isim + ' ' + soyisim + '\n' +
+      'Telefon: +90 ' + tel + '\n' +
+      'E-posta: ' + eposta + '\n\n' +
+      'Mesaj:\n' + mesaj
+    );
+
+    window.location.href = 'mailto:burakdemircan320@gmail.com?subject=' + subject + '&body=' + body;
+
+    var suc = document.getElementById('cf-success');
+    if (suc) suc.style.display = 'block';
+  }
+</script>
 </body>
 </html>

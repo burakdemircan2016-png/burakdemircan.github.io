@@ -50,6 +50,15 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
+  @keyframes char-shine {
+    0%, 100% { text-shadow: none; }
+    10%  { text-shadow: 0 0 6px #fff, 0 0 14px rgba(255,255,255,0.75), 0 0 24px rgba(255,255,255,0.4); }
+    28%  { text-shadow: none; }
+  }
+  .blink-char {
+    display: inline;
+    animation: char-shine 4.5s ease-in-out infinite;
+  }
   .nav-brand {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem; font-weight: 600;
@@ -1082,6 +1091,53 @@
     });
   }
 
+  // Nav brand – harf harf beyaz ışık geçişi
+  try {
+    (function() {
+      var brand = document.querySelector('.nav-brand');
+      if (!brand) return;
+
+      var total = 0;
+      function countL(node) {
+        if (node.nodeType === 3) total += node.textContent.replace(/ /g,'').length;
+        else [].slice.call(node.childNodes).forEach(countL);
+      }
+      countL(brand);
+      if (total === 0) return;
+
+      var idx = 0;
+      var SWEEP = 2.4;
+      var CYCLE = 4.5;
+
+      function wrapText(textNode) {
+        if (!textNode.parentNode) return;
+        var text = textNode.textContent;
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < text.length; i++) {
+          var c = text[i];
+          if (c === ' ') {
+            frag.appendChild(document.createTextNode(' '));
+          } else {
+            var sp = document.createElement('span');
+            sp.className = 'blink-char';
+            sp.textContent = c;
+            sp.style.animationDuration = CYCLE + 's';
+            sp.style.animationDelay = ((idx / Math.max(total - 1, 1)) * SWEEP) + 's';
+            frag.appendChild(sp);
+            idx++;
+          }
+        }
+        textNode.parentNode.replaceChild(frag, textNode);
+      }
+
+      function walk(node) {
+        if (node.nodeType === 3) { wrapText(node); }
+        else if (node.nodeType === 1) { [].slice.call(node.childNodes).forEach(walk); }
+      }
+      [].slice.call(brand.childNodes).forEach(walk);
+    })();
+  } catch(e) {}
+
 </script>
 
 <!-- GİZLİLİK POLİTİKASI MODAL -->
@@ -1162,7 +1218,9 @@
     if (/(.)\1{2,}/.test(c))
       return 'Gerçek adınızı giriniz.';
     // En az 2 farklı harf (aa, bb… reddedilir)
-    if (new Set(c.split('')).size < 2)
+    var seen = {}, uCount = 0;
+    for (var ci = 0; ci < c.length; ci++) { if (!seen[c[ci]]) { seen[c[ci]]=1; uCount++; } }
+    if (uCount < 2)
       return 'Gerçek adınızı giriniz.';
     // Klavye patikası / sahte desenler
     var fakes = ['test','deneme','fake','asdf','qwer','zxcv','abcd',
@@ -1293,114 +1351,21 @@
       'Mesaj:\n'+mesaj
     );
     window.location.href = 'mailto:burakdemircan320@gmail.com?subject='+subject+'&body='+body;
-    var suc = document.getElementById('cf-success');
-    if (suc) suc.style.display='block';
-  }
-</script>
-</body>
-</html>
-    if (!telInput) return;
-
-    // Telefon otomatik biçimlendirme: 5XX XXX XX XX
-    telInput.addEventListener('input', function() {
-      var digits = this.value.replace(/\D/g, '');
-      // Yapıştırma ile +905... yazılmışsa başındaki 90'ı kaldır
-      if (digits.startsWith('90') && digits.length > 10) digits = digits.slice(2);
-      if (digits.length > 10) digits = digits.slice(0, 10);
-      var f = '';
-      if (digits.length > 0) f += digits.slice(0, Math.min(3, digits.length));
-      if (digits.length > 3) f += ' ' + digits.slice(3, Math.min(6, digits.length));
-      if (digits.length > 6) f += ' ' + digits.slice(6, Math.min(8, digits.length));
-      if (digits.length > 8) f += ' ' + digits.slice(8, 10);
-      this.value = f;
+  // ── KOD KORUMA ──
+  try {
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault(); return false;
     });
-
-    // Her alanda değişince hata mesajını temizle
-    ['cf-isim','cf-soyisim','cf-tel','cf-eposta','cf-mesaj'].forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) el.addEventListener('input', function() { cfClearErr(id); });
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === 123) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && e.keyCode === 73) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && e.keyCode === 74) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && e.keyCode === 67) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.keyCode === 83) { e.preventDefault(); return false; }
     });
-  })();
+  } catch(e) {}
 
-  function cfShowErr(fieldId, errId, msg) {
-    var el = document.getElementById(fieldId);
-    var err = document.getElementById(errId);
-    if (el) el.classList.add('cf-invalid');
-    if (fieldId === 'cf-tel') {
-      var wrap = document.getElementById('cf-phone-wrap');
-      if (wrap) wrap.classList.add('cf-invalid');
-    }
-    if (err) err.textContent = msg;
-  }
-
-  function cfClearErr(fieldId) {
-    var el = document.getElementById(fieldId);
-    var errId = 'err-' + fieldId.replace('cf-', '');
-    var err = document.getElementById(errId);
-    if (el) el.classList.remove('cf-invalid');
-    if (fieldId === 'cf-tel') {
-      var wrap = document.getElementById('cf-phone-wrap');
-      if (wrap) wrap.classList.remove('cf-invalid');
-    }
-    if (err) err.textContent = '';
-  }
-
-  function submitContactForm() {
-    // Tüm hataları sıfırla
-    ['cf-isim','cf-soyisim','cf-tel','cf-eposta','cf-mesaj'].forEach(cfClearErr);
-
-    var isim    = document.getElementById('cf-isim').value.trim();
-    var soyisim = document.getElementById('cf-soyisim').value.trim();
-    var tel     = document.getElementById('cf-tel').value;
-    var eposta  = document.getElementById('cf-eposta').value.trim();
-    var mesaj   = document.getElementById('cf-mesaj').value.trim();
-    var ok = true;
-
-    // İsim: sadece Türkçe/Latin harf ve boşluk, en az 2 harf
-    var nameRegex = /^[a-zA-ZğüşıöçĞÜŞİÖÇ\s\-]{2,50}$/;
-    if (!nameRegex.test(isim) || isim.replace(/\s/g,'').length < 2) {
-      cfShowErr('cf-isim', 'err-isim', 'Gerçek adınızı giriniz. Yalnızca harf, en az 2 karakter.');
-      ok = false;
-    }
-    if (!nameRegex.test(soyisim) || soyisim.replace(/\s/g,'').length < 2) {
-      cfShowErr('cf-soyisim', 'err-soyisim', 'Gerçek soyadınızı giriniz. Yalnızca harf, en az 2 karakter.');
-      ok = false;
-    }
-
-    // Telefon: boşluklar kaldırılınca tam 10 rakam, 5 ile başlamalı
-    var telDigits = tel.replace(/\s/g, '');
-    if (!/^5[0-9]{9}$/.test(telDigits)) {
-      cfShowErr('cf-tel', 'err-tel', 'Geçerli bir Türkiye numarası giriniz. Örnek: 532 111 22 33');
-      ok = false;
-    }
-
-    // E-posta
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(eposta)) {
-      cfShowErr('cf-eposta', 'err-eposta', 'Geçerli bir e-posta adresi giriniz. Örnek: ornek@email.com');
-      ok = false;
-    }
-
-    // Mesaj: en az 20 karakter
-    if (mesaj.length < 20) {
-      cfShowErr('cf-mesaj', 'err-mesaj', 'Mesajınız en az 20 karakter olmalıdır. (' + mesaj.length + '/20)');
-      ok = false;
-    }
-
-    if (!ok) return;
-
-    var subject = encodeURIComponent('İletişim Formu – ' + isim + ' ' + soyisim);
-    var body = encodeURIComponent(
-      'İsim Soyisim: ' + isim + ' ' + soyisim + '\n' +
-      'Telefon: +90 ' + tel + '\n' +
-      'E-posta: ' + eposta + '\n\n' +
-      'Mesaj:\n' + mesaj
-    );
-
-    window.location.href = 'mailto:burakdemircan320@gmail.com?subject=' + subject + '&body=' + body;
-
-    var suc = document.getElementById('cf-success');
-    if (suc) suc.style.display = 'block';
-  }
 </script>
 </body>
 </html>

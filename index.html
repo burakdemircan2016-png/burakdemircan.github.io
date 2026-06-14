@@ -9,6 +9,8 @@
 <meta name="keywords" content="Burak Demircan, inşaat mühendisi, Erzurum, yapı denetim, hakediş, saha denetimi, Mavi Beyaz Yapı Denetim, Aydın Grup İnşaat, inşaat mühendisi Erzurum">
 <meta name="author" content="Burak Demircan">
 <meta name="robots" content="index, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
 <meta property="og:title" content="Burak Demircan – İnşaat Mühendisi | Erzurum">
 <meta property="og:description" content="Erzurum'da görev yapan inşaat mühendisi Burak Demircan'ın kişisel portfolyo sitesi.">
 <meta property="og:type" content="website">
@@ -1015,7 +1017,7 @@
             </div>
           </div>
         </div>
-        <a href="https://www.linkedin.com/in/burak-demircan-507955127/" target="_blank" rel="noopener"
+        <a href="https://www.linkedin.com/in/burak-demircan-507955127/" target="_blank" rel="noopener noreferrer"
            style="margin-top:1.5rem;display:flex;align-items:center;gap:1.2rem;padding:1.3rem 1.6rem;background:#ffffff;border:1px solid #e0e0e0;border-radius:12px;text-decoration:none;transition:transform 0.25s ease, box-shadow 0.25s ease;"
            onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(10,102,194,0.15)'"
            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
@@ -1148,7 +1150,7 @@
     <p style="font-size:0.92rem;line-height:1.8;color:#555;margin-bottom:1rem;">Bu kişisel web sitesi, Burak DEMİRCAN tarafından hazırlanmış olup yalnızca bilgilendirme amacıyla yayınlanmaktadır.</p>
     <p style="font-size:0.92rem;line-height:1.8;color:#555;margin-bottom:1rem;"><strong>Toplanan Bilgiler:</strong> Bu site herhangi bir kişisel veri toplamamaktadır. Ziyaretçilere ait hiçbir bilgi kaydedilmez, işlenmez veya üçüncü taraflarla paylaşılmaz.</p>
     <p style="font-size:0.92rem;line-height:1.8;color:#555;margin-bottom:1rem;"><strong>İletişim Bilgileri:</strong> İletişim formunda paylaşılan bilgiler yalnızca iletişim amacıyla kullanılır ve üçüncü taraflarla paylaşılmaz.</p>
-    <p style="font-size:0.92rem;line-height:1.8;color:#555;">Herhangi bir sorunuz için: burakdemircan320@gmail.com adresine ulaşabilirsiniz.</p>
+    <p style="font-size:0.92rem;line-height:1.8;color:#555;">Herhangi bir sorunuz için: <a href="#" class="_mailto" rel="nofollow noopener" style="color:var(--accent);text-decoration:none;">burakdemircan320 [at] gmail [dot] com</a> adresine ulaşabilirsiniz.</p>
   </div>
 </div>
 
@@ -1160,7 +1162,7 @@
     <p style="font-size:0.92rem;line-height:1.8;color:#555;margin-bottom:1rem;">Bu kişisel web sitesi çerez kullanımını minimumda tutmaktadır.</p>
     <p style="font-size:0.92rem;line-height:1.8;color:#555;margin-bottom:1rem;"><strong>Zorunlu Çerezler:</strong> Sitenin düzgün çalışması için gereken teknik çerezler kullanılabilir. Bu çerezler oturum bilgisi içermez ve kişisel veri toplamaz.</p>
     <p style="font-size:0.92rem;line-height:1.8;color:#555;margin-bottom:1rem;"><strong>Analitik Çerezler:</strong> Bu site herhangi bir analitik veya takip çerezi kullanmamaktadır.</p>
-    <p style="font-size:0.92rem;line-height:1.8;color:#555;">Çerezleri tarayıcı ayarlarınızdan yönetebilir veya silebilirsiniz. Daha fazla bilgi için: burakdemircan320@gmail.com</p>
+    <p style="font-size:0.92rem;line-height:1.8;color:#555;">Çerezleri tarayıcı ayarlarınızdan yönetebilir veya silebilirsiniz. Daha fazla bilgi için: <a href="#" class="_mailto" rel="nofollow noopener" style="color:var(--accent);text-decoration:none;">burakdemircan320 [at] gmail [dot] com</a></p>
   </div>
 </div>
 
@@ -1325,6 +1327,24 @@
     });
   })();
 
+  // ── E-posta adresini parçalardan kur (kaynak kodda düz metin olarak görünmesin) ──
+  function _mailAddr() {
+    var user = ['burakdemircan320'].join('');
+    var host = ['gmail', 'com'].join('.');
+    return user + '@' + host;
+  }
+
+  // Sayfadaki ._mailto öğelerini gerçek e-posta bağlantısına dönüştür
+  (function() {
+    var addr = _mailAddr();
+    var nodes = document.querySelectorAll('._mailto');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      el.textContent = addr;
+      el.setAttribute('href', 'mailto:' + addr);
+    }
+  })();
+
   // ── Gönder ──
   function submitContactForm() {
     ['cf-isim','cf-soyisim','cf-tel','cf-eposta','cf-mesaj'].forEach(cfClearErr);
@@ -1350,8 +1370,17 @@
       'E-posta: '+eposta+'\n\n'+
       'Mesaj:\n'+mesaj
     );
-    window.location.href = 'mailto:burakdemircan320@gmail.com?subject='+subject+'&body='+body;
+    window.location.href = 'mailto:'+_mailAddr()+'?subject='+subject+'&body='+body;
+
+    var success = document.getElementById('cf-success');
+    if (success) success.style.display = 'block';
+  }
+
   // ── KOD KORUMA ──
+  // Not: Bu önlemler kararlı bir kullanıcıyı/teknik birini durdurmaz
+  // (tarayıcı menüsünden geliştirici araçları yine açılabilir). Yalnızca
+  // sıradan kopyalama/inceleme girişimlerini caydırır. Sayfada gizli
+  // tutulması gereken bir veri (parola, anahtar vb.) bulunmamaktadır.
   try {
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault(); return false;
@@ -1365,6 +1394,17 @@
       if (e.ctrlKey && e.keyCode === 83) { e.preventDefault(); return false; }
     });
   } catch(e) {}
+
+  // ── Tıklama hırsızlığı (clickjacking) koruması ──
+  // Site başka bir sayfanın <iframe>'i içine gömülmeye çalışılırsa
+  // üst pencereyi bu sayfaya yönlendir; mümkün olmazsa içeriği gizle.
+  try {
+    if (window.top !== window.self) {
+      window.top.location.href = window.self.location.href;
+    }
+  } catch (e) {
+    if (document.documentElement) document.documentElement.style.display = 'none';
+  }
 
 </script>
 </body>

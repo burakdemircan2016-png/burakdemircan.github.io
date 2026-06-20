@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Ana Sayfa -->
   <url>
     <loc>https://burakdemircan.com/</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2025-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Hakkımda -->
   <url>
     <loc>https://burakdemircan.com/#about</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2025-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Deneyim -->
   <url>
     <loc>https://burakdemircan.com/#experience</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2025-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Beceriler -->
   <url>
     <loc>https://burakdemircan.com/#skills</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2025-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Eğitim -->
   <url>
     <loc>https://burakdemircan.com/#education</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2025-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- İletişim -->
   <url>
     <loc>https://burakdemircan.com/#contact</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2025-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
 </urlset>

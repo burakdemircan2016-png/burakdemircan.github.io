@@ -418,6 +418,8 @@
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
   .contact-intro p {
     font-size: 0.97rem; line-height: 1.9; color: #555; margin-bottom: 1.5rem;
+    text-align: justify; text-align-last: left;
+    hyphens: auto; -webkit-hyphens: auto;
   }
   .contact-items { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
   .contact-item {
@@ -1077,9 +1079,9 @@
     <h2 class="section-title">Hakkımda &amp;<em> Hedeflerim</em></h2>
     <div class="about-grid">
       <div class="about-body reveal">
-        <p>Atatürk Üniversitesi İnşaat Mühendisliği bölümünden mezun oldum, aynı üniversitede İşletme lisansımı tamamladım. Bu ikili altyapı, bir imalata yalnızca teknik tarafından bakmamı engelliyor; sahada verilen her kararın bir maliyet ve takvim karşılığı olduğunu baştan hesaba katıyorum.</p>
-        <p>Mesleğe Mavi Beyaz Yapı Denetim'de Yardımcı Kontrol Elemanı olarak başladım. Belediye hakedişlerinin hazırlanması, inşaat ilerleme seviyelerinin takibi ve şantiyelerin statik projeye uygunluk denetimi sorumluluğumdaydı. Denetim tarafında geçen süre bana bir imalatın nerede yanlış gidebileceğini önceden görmeyi öğretti. Haziran 2026'dan bu yana Aydın Grup İnşaat'ta şantiye şefi olarak görev yapıyorum.</p>
-        <p>Sahada işi asıl yapan ustalar ve teknik ekipler; projedeki bir çizginin betonda nasıl karşılık bulduğunu onlarla çalışarak öğrendim ve öğrenmeye devam ediyorum. Bildiğimle yetinmemeye özen gösteriyorum: statik proje ve betonarme tasarım tarafını derinleştirmek için İdeCAD üzerinde çalışıyorum. Mühendisliğin yanında web tasarımıyla ilgileniyorum; şantiyede kullandığım takip araçlarının bir kısmını kendim yazdım.</p>
+        <p>Atatürk Üniversitesi'nde İnşaat Mühendisliği okudum, aynı üniversitede İşletme lisansımı da tamamladım. Okul yıllarında Karayolları Genel Müdürlüğü'nde, Olgun Gür A.Ş.'de ve Yakutiye Yapı Denetim'de staj yaptım.</p>
+        <p>Mesleğe Mavi Beyaz Yapı Denetim'de Yardımcı Kontrol Elemanı olarak başladım. Belediye hakedişlerini hazırladım, inşaatların ilerleme seviyelerini takip ettim ve şantiyelerdeki imalatların statik projeye uygunluğunu denetledim. Denetim tarafında geçirdiğim süre, bir imalatın nerede aksayabileceğini önceden görmeyi bana öğretti. Haziran 2026'dan bu yana Aydın Grup İnşaat'ta şantiye şefi olarak çalışıyorum.</p>
+        <p>Şu sıralar statik proje ve betonarme tarafında kendimi geliştirmeye çalışıyorum, bunun için İdeCAD öğreniyorum. Bir de web tasarımına merakım var.</p>
 
       </div>
     </div>
@@ -1329,7 +1331,7 @@
 <section id="resources">
   <div class="section-inner">
     <div class="section-label">Kaynaklar</div>
-    <h2 class="section-title">Saha <em>Dökümanları</em></h2>
+    <h2 class="section-title">Saha <em>Dokümanları</em></h2>
     <div class="res-wrap">
       <div class="res-doc reveal">
         <div class="res-doc-top">
@@ -1343,9 +1345,8 @@
         <p class="res-doc-desc">
           Şantiyeye başlarken ve her imalat aşamasında elimin altında bulunsun diye hazırladığım saha kontrol listesi.
           Saha kurulumundan radye temele, kat dökümlerinden İSG ve çevre güvenliğine kadar sahanın kritik kontrollerini
-          tek belgede topluyor. Döküm kontrol tablolarını, yapı denetimde çalışırken çalışma arkadaşımın hazırladığı
-          föyden yola çıkarak geliştirip genişlettim.
-          Dilerseniz indirip kendi şantiyenizde referans olarak kullanabilirsiniz.
+          tek belgede topluyor. Döküm kontrol tablolarını ise yapı denetimdeyken çalışma arkadaşımın
+          föyünden uyarladım.
         </p>
         <div class="res-actions">
           <button class="res-btn res-btn-primary" onclick="openSahaPdf()" type="button">
@@ -1360,7 +1361,7 @@
           <h3>Kullanım Uyarısı</h3>
         </div>
         <p>
-          Bu belge <strong>genel bir saha referansıdır</strong> ve kişisel deneyimime dayanarak hazırlanmıştır.
+          Bu belge <strong>genel bir saha referansıdır</strong>.
           Her projenin kendi zemin etüdü, statik projesi, ruhsat koşulları ve şartnameleri farklılık gösterir.
         </p>
         <p>
@@ -1369,7 +1370,7 @@
           ilgili müelliflere aittir.
         </p>
         <p>
-          Belgede eksik veya hatalı gördüğünüz bir nokta olursa memnuniyetle dinlerim —
+          Belgede eksik veya hatalı gördüğünüz bir nokta olursa memnuniyetle okurum —
           <a href="#contact">iletişim bölümünden</a> bana ulaşabilirsiniz.
         </p>
       </div>
